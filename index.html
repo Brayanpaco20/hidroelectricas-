@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora Línea de Transmisión | Centrales Hidroeléctricas</title>
+    <link rel="stylesheet" href="estilos.css" />
+</head>
+<body>
+    <div class="contenedor">
+        <!-- ENCABEZADO CON DATOS DEL PROYECTO -->
+        <header class="encabezado">
+            <h1>⚡ Cálculo de Línea de Transmisión Eléctrica</h1>
+            <p class="materia">Materia: <strong>Centrales Hidroeléctricas</strong></p>
+            <p class="autor">Creado por: <strong>Brayan Paco</strong> — Estudiante Universitario</p>
+        </header>
+
+        <!-- TIPO DE LÍNEA -->
+        <div class="card">
+            <h2>🔌 Tipo de Línea</h2>
+            <div class="opciones-tipo">
+                <label class="radio-label">
+                    <input type="radio" name="tipoLinea" id="tipoMonofasico" value="monofasico">
+                    <span>Monofásica</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="tipoLinea" id="tipoTrifasico" value="trifasico" checked>
+                    <span>Trifásica</span>
+                </label>
+            </div>
+        </div>
+
+        <!-- DATOS DE ENTRADA -->
+        <div class="card">
+            <h2>📋 Datos del Ejercicio</h2>
+            <div class="grid">
+                <div>
+                    <label>Radio del conductor (mm):</label>
+                    <input type="number" id="radio_mm" value="27" step="0.1">
+                </div>
+                <div>
+                    <label>Longitud L (km):</label>
+                    <input type="number" id="L_km" value="230">
+                </div>
+                <div>
+                    <label>Frecuencia f (Hz):</label>
+                    <input type="number" id="f" value="50">
+                </div>
+                <div>
+                    <label>Tensión de línea U<sub>L</sub> (kV):</label>
+                    <input type="number" id="U_L_kV" value="50">
+                </div>
+                <div>
+                    <label>Resistencia por km (Ω/km):</label>
+                    <input type="number" id="R_por_km" value="0.052" step="0.001">
+                </div>
+                <div>
+                    <label>Carga P<sub>r</sub> (MW):</label>
+                    <input type="number" id="P_r_MW" value="120">
+                </div>
+                <div>
+                    <label>Factor de potencia FP<sub>r</sub>:</label>
+                    <input type="number" id="FP_r" value="0.85" step="0.01">
+                </div>
+                <div class="distancia-fila trifasico">
+                    <label>D<sub>12</sub> (m):</label>
+                    <input type="number" id="D12" value="6">
+                </div>
+                <div class="distancia-fila trifasico">
+                    <label>D<sub>23</sub> (m):</label>
+                    <input type="number" id="D23" value="6">
+                </div>
+                <div class="distancia-fila trifasico">
+                    <label>D<sub>13</sub> (m):</label>
+                    <input type="number" id="D13" value="12">
+                </div>
+                <div class="monofasico">
+                    <label>Distancia entre conductores (m):</label>
+                    <input type="number" id="D_mono" value="3">
+                </div>
+            </div>
+            <button onclick="calcularTodo()">✅ Calcular Todo</button>
+        </div>
+
+        <!-- RESULTADOS -->
+        <div id="resultados" class="card oculto">
+            <h2>📊 Resultados Completos</h2>
+
+            <div class="seccion">
+                <h3>1️⃣ Parámetros por kilómetro</h3>
+                <div id="sec_param_km"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>2️⃣ Parámetros totales de la línea</h3>
+                <div id="sec_param_total"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>3️⃣ Impedancia Serie Z (Rectangular y Polar)</h3>
+                <div id="sec_Z"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>4️⃣ Capacitancia, Susceptancia y Admitancia Y</h3>
+                <div id="sec_Y"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>5️⃣ Modelo Nominal π</h3>
+                <div id="sec_pi"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>6️⃣ Condiciones en Recepción</h3>
+                <div id="sec_recepcion"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>7️⃣ Condiciones en Envío</h3>
+                <div id="sec_envio"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>8️⃣ Efecto Ferranti</h3>
+                <div id="sec_ferranti"></div>
+            </div>
+
+            <div class="seccion">
+                <h3>9️⃣ Resumen Final</h3>
+                <div id="sec_resumen"></div>
+            </div>
+        </div>
+
+        <!-- PIE DE PÁGINA -->
+        <footer class="pie">
+            <p>Proyecto desarrollado para la materia de <strong>Centrales Hidroeléctricas</strong></p>
+            <p>© 2026 — <strong>Brayan Paco</strong> — Todos los derechos reservados</p>
+        </footer>
+    </div>
+
+    <script src="calculos.js"></script>
+</body>
+</html>
